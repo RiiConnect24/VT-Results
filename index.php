@@ -137,9 +137,9 @@
   <body>
     <div class="banner"></div>
     <?php
-	  require "config/config.php";
+      require "config/config.php";
 
-      $conn = connectMySQL(); 
+      $conn = connectMySQL();
 
       if(isset($_GET['qid'])) {
         $stmt = $conn->prepare('
@@ -187,10 +187,10 @@
         if ($votes_choice1 == $votes_choice2) {
           $prediction_accuracy = 0;
         } elseif ($votes_choice1 > $votes_choice2) {
-          $prediction_accuracy = round(($prediciton_choice1 / ($prediciton_choice1 + $prediciton_choice2)) * 100, 1);
+          $prediction_accuracy = round(($prediction_choice1 / ($prediction_choice1 + $prediction_choice2)) * 100, 1);
           $prediction_accuracy_width = round($prediction_accuracy);
         } else {
-          $prediction_accuracy = round(($prediciton_choice2 / ($prediciton_choice1 + $prediciton_choice2)) * 100, 1);
+          $prediction_accuracy = round(($prediction_choice2 / ($prediction_choice1 + $prediction_choice2)) * 100, 1);
           $prediction_accuracy_width = round($prediction_accuracy);
         }
 
