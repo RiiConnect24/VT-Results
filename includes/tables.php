@@ -64,8 +64,14 @@
   }
 
   function voteBreakdownTable($title, $image, $votes_choice1, $votes_choice2) {
-    $votes_choice1_perc = round(($votes_choice1 / ($votes_choice1 + $votes_choice2)) * 100, 1);
-    $votes_choice2_perc = 100 - $votes_choice1_perc;
+    $votes_choice1_perc = 0;
+    $votes_choice2_perc = 0;
+
+    if ($votes_choice1 > 0 || $votes_choice2 > 0) {
+      $votes_choice1_perc = round(($votes_choice1 / ($votes_choice1 + $votes_choice2)) * 100, 1);
+      $votes_choice2_perc = 100 - $votes_choice1_perc;
+    }
+
     $choice1_width = round($votes_choice1_perc);
     $choice2_width = round($votes_choice2_perc);
 
