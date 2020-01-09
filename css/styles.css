@@ -74,6 +74,11 @@ td.question {
   text-shadow: 2px 2px #000000;
 }
 
+.novote {
+  background-color: #272727;
+  padding-left: 12px;
+}
+
 .prediction {
   background-color: #00bdce;
 }
