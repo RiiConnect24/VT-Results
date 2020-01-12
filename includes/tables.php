@@ -106,10 +106,10 @@
       $col2 = '';
     } elseif ($votes_choice1 == 0 && $votes_choice2 > 0) {
       $colspan = 1;
-      $col2 = '';
+      $col1 = '';
     } elseif ($votes_choice2 == 0 && $votes_choice1 > 0) {
       $colspan = 1;
-      $col1 = '';
+      $col2 = '';
     }
 
     echo '
