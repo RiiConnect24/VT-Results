@@ -27,7 +27,7 @@
     $column_suffix = getColumnSuffix();
 
     $stmt = $conn->prepare('
-      SELECT questionID, content_'.$column_suffix.', choice1_'.$column_suffix.', choice2_'.$column_suffix.', date, type
+      SELECT questionID, content_'.$column_suffix.' AS content, choice1_'.$column_suffix.' AS choice1, choice2_'.$column_suffix.' AS choice2, date, type
       FROM questions
       WHERE DATE(date) <= CURDATE() - INTERVAL ? DAY
       ORDER BY questionID DESC
@@ -45,7 +45,7 @@
     $column_suffix = getColumnSuffix();
 
     $stmt = $conn->prepare('
-      SELECT questionID, content_'.$column_suffix.', choice1_'.$column_suffix.', choice2_'.$column_suffix.', date, type
+      SELECT questionID, content_'.$column_suffix.' AS content, choice1_'.$column_suffix.' AS choice1, choice2_'.$column_suffix.' AS choice2, date, type
       FROM questions
       WHERE DATE(date) <= CURDATE() - INTERVAL ? DAY
       AND questionID = ?

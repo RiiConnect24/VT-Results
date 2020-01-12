@@ -42,11 +42,11 @@
             <img width="64" height="64" alt="'.$image.'" src="./images/'.$row['type'].'_question.png" />
           </a>
         </td>
-        <td colspan="2" class="question">'.$row['content_english'].'</td>
+        <td colspan="2" class="question">'.$row['content'].'</td>
       </tr>
       <tr>
-        <td width="50%" class="choice1">'.$row['choice1_english'].'</td>
-        <td width="50%" class="choice2">'.$row['choice2_english'].'</td>
+        <td width="50%" class="choice1">'.$row['choice1'].'</td>
+        <td width="50%" class="choice2">'.$row['choice2'].'</td>
       </tr>
     </table>';
   }
