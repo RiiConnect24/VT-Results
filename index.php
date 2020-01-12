@@ -20,6 +20,10 @@
     <div class="banner"></div>
     <?php
       $conn = connectMySQL();
+      $lid = '1';
+      if (isset($_GET['lid'])) {
+        $lid = $_GET['lid'];
+      }
 
       if(isset($_GET['qid'])) {
         $qid = (int) $_GET['qid'];
@@ -41,8 +45,9 @@
         } else {
           echo '<div class="table">Question not found</div>';
         }
-        echo '<div class="table"><a class="button" href="./"><< Back</a></div>';
+        echo '<div class="table"><a class="button" href="./?'.urlParams().'"><< Back</a></div>';
       } else {
+        langaugeTable();
         $data = questionsList();
         foreach($data as $row) {
           questionTable($row);

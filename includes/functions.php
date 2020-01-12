@@ -1,11 +1,33 @@
 <?php
   defined('IN_PAGE') or die();
 
+  function urlParams($args = array()) {
+    global $lid;
+    $args['lid'] = $lid;
+    return http_build_query($args);
+  }
+
+  function getColumnSuffix() {
+    global $lid, $language_columns_mapping;
+
+    return $language_columns_mapping[$lid];
+  }
+
+  function cssClass($v1, $v2, $match, $no_match='') {
+    if ($v1 == $v2) {
+      return $match;
+    }
+
+    return $no_match;
+  }
+
   function questionsList() {
     global $conn, $day_delay;
 
+    $column_suffix = getColumnSuffix();
+
     $stmt = $conn->prepare('
-      SELECT questionID, content_english, choice1_english, choice2_english, date, type
+      SELECT questionID, content_'.$column_suffix.', choice1_'.$column_suffix.', choice2_'.$column_suffix.', date, type
       FROM questions
       WHERE DATE(date) <= CURDATE() - INTERVAL ? DAY
       ORDER BY questionID DESC
@@ -20,8 +42,10 @@
   function getQuestion($qid) {
     global $conn, $day_delay;
 
+    $column_suffix = getColumnSuffix();
+
     $stmt = $conn->prepare('
-      SELECT questionID, content_english, choice1_english, choice2_english, date, type
+      SELECT questionID, content_'.$column_suffix.', choice1_'.$column_suffix.', choice2_'.$column_suffix.', date, type
       FROM questions
       WHERE DATE(date) <= CURDATE() - INTERVAL ? DAY
       AND questionID = ?

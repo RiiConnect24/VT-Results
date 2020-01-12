@@ -1,12 +1,20 @@
 <?php
   defined('IN_PAGE') or die();
 
-  function cssClass($v1, $v2, $match, $no_match='') {
-    if ($v1 == $v2) {
-      return $match;
+  function langaugeTable() {
+    global $languages_mapping, $lid;
+    echo '
+      <table class="table">
+        <tr><td class="question">Change Question Language</td></tr>
+        <tr><td>
+    ';
+    foreach ($languages_mapping as $languageID => $language_name) {
+      echo '<a class="country-button '.cssClass($lid, $languageID, 'active').'" href="./?lid='.$languageID.'">'.$language_name.'</a> ';
     }
-
-    return $no_match;
+    echo '
+        </td></tr>
+      </table>
+    ';
   }
 
   function questionCountryTable($qid, $countries, $cid=0) {
@@ -15,9 +23,9 @@
         <tr><td class="question">Results by Country</td></tr>
         <tr><td>
     ';
-    echo '<a class="country-button '.cssClass($cid, 0, 'active').'" href="./?qid='.$qid.'">All</a> ';
+    echo '<a class="country-button '.cssClass($cid, 0, 'active').'" href="./?'.urlParams(array('qid' => $qid)).'">All</a> ';
     foreach ($countries as $countryID => $country) {
-      echo '<a class="country-button '.cssClass($cid, $countryID, 'active').'" href="./?qid='.$qid.'&cid='.$countryID.'">'.$country.'</a> ';
+      echo '<a class="country-button '.cssClass($cid, $countryID, 'active').'" href="./?'.urlParams(array('qid' => $qid, 'cid' => $countryID)).'">'.$country.'</a> ';
     }
     echo '
         </td></tr>
@@ -29,8 +37,8 @@
     echo '
     <table class="table">
       <tr>
-        <td rowspan="2" class="question-button" width="64">
-          <a href="./?qid='.$row['questionID'].'">
+        <td rowspan="2" class="question-button">
+          <a href="./?'.urlParams(array('qid' => $row['questionID'])).'">
             <img width="64" height="64" alt="'.$image.'" src="./images/'.$row['type'].'_question.png" />
           </a>
         </td>
