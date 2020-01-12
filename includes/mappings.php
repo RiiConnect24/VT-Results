@@ -3,7 +3,7 @@
 
   $languages_mapping = array(
     '1' => 'English',
-    '2' => 'Japanese',
+    // '2' => 'Japanese',
     '3' => 'German',
     '4' => 'French',
     '5' => 'Spanish',
