@@ -10,6 +10,7 @@ function connectMySQL() {
         error_log("MySQL connection error: " . $conn->connect_error);
         die();
     }
+    $conn->set_charset("utf8");
 
     return $conn;
 }
