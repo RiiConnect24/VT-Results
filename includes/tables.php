@@ -42,16 +42,14 @@
             <img width="64" height="64" alt="'.$image.'" src="./images/'.$row['type'].'_question.png" />
           </a>
         </td>
+        <td colspan="2">'.date('F d, Y', strtotime($row['date'])).'</td>
+      </tr>
+      <tr>
         <td colspan="2" class="question">'.$row['content'].'</td>
       </tr>
       <tr>
         <td width="50%" class="choice1">'.$row['choice1'].'</td>
         <td width="50%" class="choice2">'.$row['choice2'].'</td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          '.date('F d, Y', strtotime($row['date'])).'
-        </td>
       </tr>
     </table>';
   }
