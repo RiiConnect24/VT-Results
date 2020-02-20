@@ -22,15 +22,17 @@
   }
 
   function questionsList() {
-    global $conn, $day_delay;
+    global $conn, $day_delay, $page;
 
     $column_suffix = getColumnSuffix();
+    $page_page = 25;
 
     $stmt = $conn->prepare('
       SELECT questionID, content_'.$column_suffix.' AS content, choice1_'.$column_suffix.' AS choice1, choice2_'.$column_suffix.' AS choice2, date, type
       FROM questions
       WHERE DATE(date) <= CURDATE() - INTERVAL ? DAY
       ORDER BY questionID DESC
+      LIMIT '.$page_page.' OFFSET '.(((int) $page - 1) * $page_page).'
     ');
     $stmt->bind_param('i', $day_delay);
     $stmt->execute();

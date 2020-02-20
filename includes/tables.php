@@ -1,6 +1,27 @@
 <?php
   defined('IN_PAGE') or die();
 
+  function pageButtons() {
+    global $page;
+
+    $int_page = (int) $page;
+    $next_page = $int_page + 1;
+    $next_button = '<a class="page-button" href="./?'.urlParams(array('page' => $next_page)).'">Next Page >></a>';
+
+    $prev_button = '<a class="page-button-hidden"></a>';
+    if ($int_page > 1) {
+      $prev_page = $int_page - 1;
+      $prev_button = '<a class="page-button" href="./?'.urlParams(array('page' => $prev_page)).'"><< Previous Page</a>';
+    }
+
+    echo '
+      <table class="table">
+        <tr><td>'.$prev_button.'
+        '.$next_button.'</td></tr>
+      </table>
+    ';
+  }
+
   function langaugeTable() {
     global $languages_mapping, $lid;
     echo '

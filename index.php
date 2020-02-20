@@ -24,6 +24,10 @@
       if (isset($_GET['lid'])) {
         $lid = $_GET['lid'];
       }
+      $page = '1';
+      if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+      }
 
       if(isset($_GET['qid'])) {
         $qid = (int) $_GET['qid'];
@@ -48,10 +52,12 @@
         echo '<div class="table"><a class="button" href="./?'.urlParams().'"><< Back</a></div>';
       } else {
         langaugeTable();
+        pageButtons();
         $data = questionsList();
         foreach($data as $row) {
           questionTable($row);
         }
+        pageButtons();
       }
     ?>
     <div class="banner"></div>

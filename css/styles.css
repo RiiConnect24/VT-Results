@@ -100,18 +100,18 @@ td.question {
   text-align: right;
 }
 
-a.country-button {
+a.country-button, a.page-button, a.page-button-hidden {
   float: left;
   margin: 4px 10px;
   padding: 4px 0;
 }
 
-a.button {
+a.button, a.page-button, a.page-button-hidden {
   padding: 4px 6px;
   background-color: white;
 }
 
-a.country-button, a.button {
+a.country-button, a.button, a.page-button, a.page-button-hidden {
   display: block;
   width: 30%;
   border: black solid 1px;
@@ -122,9 +122,17 @@ a.country-button, a.button {
   color: black;
 }
 
-a.country-button:hover, a.button:hover, td.question-button:hover {
+a.country-button:hover, a.button:hover, a.page-button:hover, td.question-button:hover {
   background-color: #e6e6e6;
   color: black;
+}
+
+a.page-button, a.page-button-hidden {
+  width: 45%;
+}
+
+a.page-button-hidden {
+  border: none;
 }
 
 a.country-button.active {
