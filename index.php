@@ -28,6 +28,10 @@
       if (isset($_GET['page'])) {
         $page = $_GET['page'];
       }
+      $q = '';
+      if (isset($_GET['q'])) {
+        $q = $_GET['q'];
+      }
 
       if(isset($_GET['qid'])) {
         $qid = (int) $_GET['qid'];

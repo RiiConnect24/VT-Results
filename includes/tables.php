@@ -22,6 +22,22 @@
     ';
   }
 
+  function searchForm() {
+    global $lid;
+
+    echo '
+      <table class="table">
+        <tbody><tr><td>
+        <form action="/" method="GET">
+          <input type="hidden" name="lid" value="'.$lid.'" />
+          <input style="width: 100%; margin-top: 18px;" type="text" name="q" />
+          <input type="submit" value="Search Questions" style="margin-top: 8px;">
+        </form>
+        </td></tr>
+      </tbody></table>
+    ';
+  }
+
   function langaugeTable() {
     global $languages_mapping, $lid;
     echo '

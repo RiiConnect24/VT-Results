@@ -2,8 +2,11 @@
   defined('IN_PAGE') or die();
 
   function urlParams($args = array()) {
-    global $lid;
+    global $lid, $q;
     $args['lid'] = $lid;
+    if ($q != "") {
+      $args['q'] = $q;
+    }
     return http_build_query($args);
   }
 
@@ -22,19 +25,31 @@
   }
 
   function questionsList() {
-    global $conn, $day_delay, $page;
+    global $conn, $day_delay, $page, $q;
 
     $column_suffix = getColumnSuffix();
     $page_page = 25;
 
-    $stmt = $conn->prepare('
-      SELECT questionID, content_'.$column_suffix.' AS content, choice1_'.$column_suffix.' AS choice1, choice2_'.$column_suffix.' AS choice2, date, type
+    $sql = '
+    SELECT questionID, content_'.$column_suffix.' AS content, choice1_'.$column_suffix.' AS choice1, choice2_'.$column_suffix.' AS choice2, date, type
       FROM questions
-      WHERE DATE(date) <= CURDATE() - INTERVAL ? DAY
+      WHERE DATE(date) <= CURDATE() - INTERVAL '.((int) $day_delay).' DAY
+    ';
+
+    if ($q != '') {
+      $sql = $sql.' AND content_'.$column_suffix.' LIKE ?';
+    }
+
+    $sql = $sql.'
       ORDER BY questionID DESC
       LIMIT '.$page_page.' OFFSET '.(((int) $page - 1) * $page_page).'
-    ');
-    $stmt->bind_param('i', $day_delay);
+    ';
+
+    $stmt = $conn->prepare($sql);
+    if ($q != '') {
+      $stmt->bind_param('s', '%'.$q.'%');
+    }
+
     $stmt->execute();
     $data = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
